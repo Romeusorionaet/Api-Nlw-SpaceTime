@@ -6,8 +6,7 @@
   "scripts": {
     "start": "build && node src/server.ts",
     "dev": "tsx watch src/server.ts",
-    "lint": "eslint src --ext .ts --fix",
-    "build": "tsc && vite build"
+    "lint": "eslint src --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
