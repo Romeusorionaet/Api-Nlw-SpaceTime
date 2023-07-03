@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsup src --out-dir build ",
+    "start": "tsup src --out-dir build ",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix"
   },
