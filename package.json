@@ -4,23 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2-runtime start ecosystem.config.ts --env production",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix"
   },
   "keywords": [],
   "author": "Romeu soares",
   "license": "ISC",
-  "devDependencies": {
-    "@rocketseat/eslint-config": "^1.2.0",
-    "@types/node": "^20.3.2",
-    "dotenv": "^16.0.3",
-    "eslint": "^8.40.0",
-    "prisma": "^4.14.0",
-    "ts-node": "^10.9.1",
-    "tsx": "^3.12.7",
-    "typescript": "^5.0.4"
-  },
   "dependencies": {
     "@fastify/cors": "^8.2.1",
     "@fastify/jwt": "^6.7.1",
@@ -30,7 +20,17 @@
     "axios": "^1.4.0",
     "fastify": "^4.17.0",
     "pm2": "^5.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
     "uuid": "^7.0.3",
     "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^1.2.0",
+    "@types/node": "^20.3.2",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.40.0",
+    "prisma": "^4.14.0",
+    "tsx": "^3.12.7"
   }
 }
