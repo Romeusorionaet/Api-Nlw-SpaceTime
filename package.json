@@ -4,9 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsup src --out-dir build ",
+    "start": "tsup ./src/server.ts --out-dir build",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix"
+  },
+  "tsup": {
+    "entry": ["./src/server.ts"],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
   },
   "keywords": [],
   "author": "Romeu soares",
