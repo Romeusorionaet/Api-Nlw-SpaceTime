@@ -7,7 +7,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "tsup src --out-dir build",
+    "start":"pm2-runtime start ecosystem.config.js --env production",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix"
   },
@@ -34,7 +34,6 @@
     "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
     "prisma": "^4.14.0",
-    "tsx": "^3.12.7",
-    "tsup": "^7.1.0"
+    "tsx": "^3.12.7"
   }
 }
