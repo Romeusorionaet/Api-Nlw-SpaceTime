@@ -3,8 +3,7 @@ module.exports = {
   apps: [
     {
       name: 'app',
-      script: './node_modules/.bin/ts-node',
-      args: '-P ./tsconfig.json src/server.ts',
+      script: './src/server.ts',
       instances: 'max',
       env: {
         NODE_ENV: 'developement',
