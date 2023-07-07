@@ -10,20 +10,34 @@ export async function memoriesRoutes(app: FastifyInstance) {
   app.get('/memories', async (request) => {
     const memories = await prisma.memory.findMany({
       where: {
-        userId: request.user.sub,
+        OR: [
+          {
+            isPublic: true,
+          },
+          {
+            isPublic: false,
+            userId: request.user.sub,
+          },
+        ],
       },
       orderBy: {
-        createdAt: 'asc',
+        createdAt: 'desc',
       },
     })
 
-    return memories.map((memory) => {
-      return {
-        id: memory.id,
-        coverUrl: memory.coverUrl,
-        excerpt: memory.content.substring(0, 115).concat('...'),
-      }
-    })
+    return {
+      userIdOn: request.user.sub,
+      memories: memories.map((memory) => {
+        return {
+          id: memory.id,
+          userId: memory.userId,
+          coverUrl: memory.coverUrl,
+          excerpt: memory.content.substring(0, 115).concat('...'),
+          isPublic: memory.isPublic,
+          createdAt: memory.createdAt,
+        }
+      }),
+    }
   })
 
   app.get('/memories/:id', async (request, reply) => {
