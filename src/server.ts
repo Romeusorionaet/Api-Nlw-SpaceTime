@@ -14,7 +14,7 @@ const app = fastify()
 app.register(multipart)
 
 app.register(require('@fastify/static'), {
-  root: resolve(__dirname, './routes/uploads'),
+  root: resolve(__dirname, '../uploads'),
   prefix: '/uploads',
 })
 
