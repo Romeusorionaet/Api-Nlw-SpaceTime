@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { z } from 'zod'
 import { prisma } from '../lib/prisma'
+const fs = require('fs')
 
 export async function memoriesRoutes(app: FastifyInstance) {
   app.addHook('preHandler', async (request) => {
@@ -78,7 +79,9 @@ export async function memoriesRoutes(app: FastifyInstance) {
       },
     })
 
-    return memory
+    if (memory) {
+      return memory
+    }
   })
 
   app.put('/memories/:id', async (request, reply) => {
@@ -101,6 +104,25 @@ export async function memoriesRoutes(app: FastifyInstance) {
         id,
       },
     })
+
+    if (memory.coverUrl !== coverUrl) {
+      const path = require('path')
+      const filePath = path.join(
+        __dirname,
+        './uploads',
+        path.basename(memory.coverUrl),
+      )
+
+      if (fs.existsSync(filePath)) {
+        try {
+          await fs.promises.unlink(filePath)
+        } catch (error) {
+          console.error('Erro ao atualizar o arquivo:', error)
+        }
+      } else {
+        console.error('O arquivo não existe:', filePath)
+      }
+    }
 
     if (memory.userId !== request.user.sub) {
       return reply.status(401).send()
@@ -135,6 +157,23 @@ export async function memoriesRoutes(app: FastifyInstance) {
 
     if (memory.userId !== request.user.sub) {
       return reply.status(401).send()
+    }
+
+    const path = require('path')
+    const filePath = path.join(
+      __dirname,
+      './uploads',
+      path.basename(memory.coverUrl),
+    )
+
+    if (fs.existsSync(filePath)) {
+      try {
+        await fs.promises.unlink(filePath)
+      } catch (error) {
+        console.error('Erro ao excluir o arquivo:', error)
+      }
+    } else {
+      console.error('O arquivo não existe:', filePath)
     }
 
     await prisma.memory.delete({
