@@ -21,6 +21,11 @@ export async function memoriesRoutes(app: FastifyInstance) {
           },
         ],
       },
+      include: {
+        user: {
+          select: { name: true },
+        },
+      },
       orderBy: {
         createdAt: 'desc',
       },
@@ -31,6 +36,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
       memories: memories.map((memory) => {
         return {
           id: memory.id,
+          author: memory.user.name,
           userId: memory.userId,
           coverUrl: memory.coverUrl,
           excerpt: memory.content.substring(0, 115).concat('...'),
