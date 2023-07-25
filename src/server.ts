@@ -36,7 +36,7 @@ app
     host: '0.0.0.0',
   })
   .then(() => {
-    console.log(`🐓Server is running on http://localhost:3333`)
+    console.log(`🐓Server is running on 3333`)
   })
   .catch((err) => {
     console.log(err)
