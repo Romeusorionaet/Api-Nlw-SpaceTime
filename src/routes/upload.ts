@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto'
 import { extname, resolve } from 'node:path'
 import { FastifyInstance } from 'fastify'
-import { createWriteStream } from 'node:fs'
+import { createWriteStream, mkdirSync } from 'node:fs' // Adicionado mkdirSync
 import { pipeline } from 'node:stream'
 import { promisify } from 'node:util'
 
@@ -32,9 +32,16 @@ export async function uploadRoutes(app: FastifyInstance) {
 
     const fileName = fileId.concat(extension)
 
-    const writeStream = createWriteStream(
-      resolve(__dirname, './uploads', fileName),
-    )
+    const uploadDirectory = resolve(__dirname, './uploads')
+
+    try {
+      mkdirSync(uploadDirectory, { recursive: true })
+    } catch (err) {
+      console.error('Erro ao criar a pasta "uploads":', err)
+      return reply.status(500).send()
+    }
+
+    const writeStream = createWriteStream(resolve(uploadDirectory, fileName))
 
     await pump(upload.file, writeStream)
 
