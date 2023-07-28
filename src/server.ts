@@ -7,16 +7,10 @@ import multipart from '@fastify/multipart'
 import { authRoutes } from './routes/auth'
 import { memoriesRoutes } from './routes/memories'
 import { uploadRoutes } from './routes/upload'
-import { resolve } from 'node:path'
 
 const app = fastify()
 
 app.register(multipart)
-
-app.register(require('@fastify/static'), {
-  root: resolve(__dirname, './uploads'),
-  prefix: '/uploads',
-})
 
 app.register(cors, {
   origin: true,
