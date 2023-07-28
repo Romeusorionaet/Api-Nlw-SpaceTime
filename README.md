@@ -52,12 +52,6 @@
 <br />
 <hr />
 
-<<<<<<< HEAD
-<p>A aplicação que consome esta api esta público em https://github.com/Romeusorionaet/Nlw-SpaceTime-Web acesse para seguir o passo a passo de como utilizar.
-=======
-<p>A aplicação que consome esta api está público em https://github.com/Romeusorionaet/Nlw-SpaceTime-Web acesse para seguir o passo a passo de como utilizar.
->>>>>>> dd5554c4387a1d58d47c3b74a8ef1487b9f6ff50
-
 <div align='center'>
 
 ![preview](https://github.com/Romeusorionaet/Nlw-SpaceTime-Web/blob/main/src/assets/preview/previewSpaceTimeDesktop.png?raw=true)
@@ -87,8 +81,4 @@
 
 <h3> Autor </h3>
 
-<<<<<<< HEAD
 >Romeu soares de souto
-=======
->Romeu soares de souto
->>>>>>> dd5554c4387a1d58d47c3b74a8ef1487b9f6ff50
